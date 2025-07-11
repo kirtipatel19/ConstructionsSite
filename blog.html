@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satyam Design Consultancy | Blog</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      background-color: #fff;
+      padding: 12px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      padding: 8px 14px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f9a825;
+      text-decoration: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      color: #333;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
+  
+    .hero {
+      background-image: url('images/vella.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+      color: #fff;
+      text-shadow: 2px 2px 5px #000;
+      z-index: 1;
+      position: relative;
+    }
+
+    .blog-section {
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 2rem;
+      color: #000;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+   .section-title::after  {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 4px;
+      background: #f9a825;    
+    }
+
+
+    .card {
+      border: none;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-read {
+      background-color: #f9a825;
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+    }
+
+    .btn-read:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+
+    
+    .offer-section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .offer-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1b2430;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 50px;
+    }
+
+    .offer-section h2::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 50px;
+      background-color: #f7c600;
+      margin: 8px auto 0;
+    }
+
+    .offer-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .offer-card {
+      background: white;
+      padding: 40px 20px;
+      border-radius: 8px;
+      width: 260px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .offer-card img {
+      width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 15px;
+     /* height: 60px;
+      margin-bottom: 10px;
+      filter: brightness(0) saturate(100%) invert(76%) sepia(77%) saturate(448%) hue-rotate(0deg) brightness(100%) contrast(97%);*/
+    }
+
+    .offer-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 0 0 10px 0;
+    }
+
+    .offer-card p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .offer-card {
+        width: 90%;
+      }
+    }
+
+     .footer {
+      background-color: #0b0b1f;
+      color: #fff;
+      padding: 50px 20px;
+    }
+    .footer h5 {
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #f9a825;
+    }
+    .footer a {
+      color: #ccc;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer a:hover {
+      text-decoration: none;
+      color: #f9a825;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+   .social-sticky {
+    position: fixed;
+    top: 40%;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .social-sticky a {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .social-sticky a:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .social-sticky a[href*="wa.me"] {
+    background: #25D366;
+  }
+
+  .social-sticky a[href*="wa.me"]:hover {
+    background: #1eb149;
+  }
+
+  .social-sticky a[href*="instagram"] {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  }
+
+  .social-sticky a[href*="instagram"]:hover {
+    filter: brightness(1.1);
+  }
+
+  .social-sticky a[href*="facebook"] {
+    background: #1877F2;
+  }
+
+  .social-sticky a[href*="facebook"]:hover {
+    background: #145dc2;
+  }
+
+  .social-sticky a[href*="youtube"] {
+    background: #FF0000;
+  }
+
+  .social-sticky a[href*="youtube"]:hover {
+    background: #cc0000;
+  }
+
+  @media (max-width: 768px) {
+    .social-sticky {
+           top: auto;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    }
+  }
+#popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 9998;
+  display: none;
+}
+
+#fancy-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 420px;
+  color: #fff;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 9999;
+  display: none;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #f9a82550; }
+  50% { box-shadow: 0 0 30px #f9a825aa; }
+  100% { box-shadow: 0 0 10px #f9a82550; }
+}
+
+#fancy-popup h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #f9a825;
+}
+
+#fancy-popup p {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.btn-action {
+  background-color: #f9a825;
+  border: none;
+  padding: 10px 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: #000;
+}
+
+.btn-action:hover {
+  background: #000;
+  color: #fff;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.5rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="Satyam Logo" />
+      </a>
+
+      <div class="menu-icon" id="menu-icon">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<section class="hero">
+  <h1 id="hero-text"></h1>
+</section>
+
+
+<section class="blog-section">
+  <div class="container">
+    <h2 class="section-title">Latest Articles</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="images/interior1.jpg" class="card-img-top" alt="Blog 1">
+          <div class="card-body">
+            <h5 class="card-title">Modern Home Interiors</h5>
+            <p class="card-text">Explore stunning and efficient interior ideas to make your space truly yours.</p>
+            <a href="blog1.html" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="images/bungalow.jpg" class="card-img-top" alt="Blog 2">
+          <div class="card-body">
+            <h5 class="card-title">Creative Landscape Designs</h5>
+            <p class="card-text">Transform your outdoors with our top landscape design inspirations.</p>
+            <a href="blog2.html" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="images/floor2.jpg" class="card-img-top" alt="Blog 3">
+          <div class="card-body">
+            <h5 class="card-title">Smart Floor Plans</h5>
+            <p class="card-text">Discover innovative 3D and modern floor plans that enhance functionality.</p>
+            <a href="blog3.html" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section">
+  <h2>CONSTRUCTION BEST OFFER</h2>
+  <div class="offer-cards">
+    <div class="offer-card">
+      <img src="https://cdn.iconscout.com/icon/free/png-512/drone-1659462-1410046.png" alt="Creating a Project" />
+      <h4>Creating a Project</h4>
+      <p>From concept to blueprint, we help bring your dream project to life. Our experts guide you through every planning and design step with precision.</p>
+    </div>
+
+    <div class="offer-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3262/3262773.png" alt="Construction Work" />
+      <h4>Construction Work</h4>
+      <p>We execute every project with strength, safety, and structural excellence. From groundwork to finishing, quality is our foundation.</p>
+    </div>
+
+    <div class="offer-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3218/3218967.png" alt="Painting" />
+      <h4>Painting & Restoration</h4>
+      <p>We deliver safe and efficient electrical solutions for homes and buildings. From wiring to lighting, power flows through precision and car.</p>
+    </div>
+
+    <div class="offer-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2166/2166826.png" alt="Electricity" />
+      <h4>Electricity & Power</h4>
+      <p>Revive your spaces with our expert painting and restoration services. We blend color with craftsmanship to breathe new life into every wall.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>ABOUT US</h5>
+          <p>Satyam Design & Consultancy is your space transformation partner, delivering Vastu-compliant and modern residential & commercial designs at affordable rates.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>SITE MAP</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="service.html">Services</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="col-md-4">
+          <h5>CONTACT</h5>
+          <p>📍 Hotel Paradise , Makroniya Madhya Pradesh ,India </p>
+          <p>📞 +919981892125</p>
+          <p>📧 kurmisatendra7@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">Copyright ©SatyamDesign&Consultancy.com.<br> All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <div class="social-sticky">
+  <a href="https://wa.me/message/2EFLNCWMJGSGK1" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/satyam_designs_and_consultancy?igsh=YzF4ZTByd24wMmVu" target="_blank" title="Follow on Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.facebook.com/share/1C5YX8yJ41/" target="_blank" title="Like us on Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.youtube.com/@SatyamDesigns" target="_blank" title="Watch on YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+
+<div id="popup-overlay"></div>
+<div id="fancy-popup">
+  <button class="popup-close" onclick="closePopup()">&times;</button>
+  <h2>🎁 Surprise Offer!</h2>
+  <p>We just dropped something special — 3D Vastu + Interior Combo at 25% OFF 🎉</p>
+  <button class="btn-action" onclick="closePopup()">Contact Now</button>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  const menuIcon = document.getElementById("menu-icon");
+  const navLinks = document.getElementById("nav-links");
+
+  menuIcon.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+
+<script>
+  const text = "Welcome to Our Blog";
+  let i = 0;
+  const speed = 100;
+
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("hero-text").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  function showPopup() {
+    document.getElementById("popup-overlay").style.display = "block";
+    document.getElementById("fancy-popup").style.display = "block";
+
+    gsap.from("#fancy-popup", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1,
+      ease: "power3.out"
+    });
+  }
+
+  function closePopup() {
+    document.getElementById("fancy-popup").style.display = "none";
+    document.getElementById("popup-overlay").style.display = "none";
+  }
+
+  window.onload = () => {
+    typeWriter();             
+    setTimeout(showPopup, 4000);  
+  };
+</script>
+</body>
+</html>

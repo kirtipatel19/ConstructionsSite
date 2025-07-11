@@ -1,0 +1,403 @@
+<html>
+<head>
+     <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>More Info | Satyam Designs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+<style>   
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      background-color: #fff;
+      padding: 12px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      padding: 8px 14px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f9a825;
+      text-decoration: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      color: #333;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
+
+  .services-gallery {
+  background-color: #fff;
+  padding: 20px 20px;
+  position: relative;
+}
+
+.service-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.service-box img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.service-title {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-color: #f9a825;
+  color: white;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+    .footer {
+      background-color: #0b0b1f;
+      color: #fff;
+      padding: 50px 20px;
+    }
+    .footer h5 {
+    color: #f9a825;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .footer a {
+      color: #ccc;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer a:hover {
+      color: #f9a825;
+        text-decoration: none;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .social-sticky {
+    position: fixed;
+    top: 40%;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .social-sticky a {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .social-sticky a:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .social-sticky a[href*="wa.me"] {
+    background: #25D366;
+  }
+
+  .social-sticky a[href*="wa.me"]:hover {
+    background: #1eb149;
+  }
+
+  .social-sticky a[href*="instagram"] {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  }
+
+  .social-sticky a[href*="instagram"]:hover {
+    filter: brightness(1.1);
+  }
+
+  .social-sticky a[href*="facebook"] {
+    background: #1877F2;
+  }
+
+  .social-sticky a[href*="facebook"]:hover {
+    background: #145dc2;
+  }
+
+  .social-sticky a[href*="youtube"] {
+    background: #FF0000;
+  }
+
+  .social-sticky a[href*="youtube"]:hover {
+    background: #cc0000;
+  }
+
+  @media (max-width: 768px) {
+    .social-sticky {
+       top: auto;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="Logo">
+      </a>
+      <div class="menu-icon" id="menu-icon">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+<br><br>
+
+<section class="services-gallery">
+  <div class="top-bar">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/k1.jpg" alt="Kitchen Remodeling">
+          <div class="service-title">Kitchen Remodeling</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/int6.jpg" alt="Bathroom Remodeling">
+          <div class="service-title">Dining Remodeling</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/g2.jpg" alt="Attic & Basement Remodeling">
+          <div class="service-title">Balcony Remodeling</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/int.jpg" alt="Painting">
+          <div class="service-title">Hall</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/about.jpg" alt="Flooring">
+          <div class="service-title">Flooring</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="service-box">
+          <img src="images/s2.jpg" alt="Finish Trim Carpentry">
+          <div class="service-title">Exterior Remodeling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+   <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>ABOUT US</h5>
+          <p>Satyam Design & Consultancy is your space transformation partner, 
+            delivering Vastu-compliant and modern residential & commercial designs at affordable rates.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>SITE MAP</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="service.html">Services</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="col-md-4">
+          <h5>CONTACT</h5>
+          <p>📍 Hotel Paradise , Makroniya Madhya Pradesh ,India </p>
+          <p>📞 +919981892125</p>
+          <p>📧 kurmisatendra7@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">Copyright ©SatyamDesign&Consultancy.com.<br> All Rights Reserved.</div>
+    </div>
+  </footer>
+
+    <div class="social-sticky">
+  <a href="https://wa.me/message/2EFLNCWMJGSGK1" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/satyam_designs_and_consultancy?igsh=YzF4ZTByd24wMmVu" target="_blank" title="Follow on Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.facebook.com/share/1C5YX8yJ41/" target="_blank" title="Like us on Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.youtube.com/@SatyamDesigns" target="_blank" title="Watch on YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+
+<script>
+  const menuIcon = document.getElementById("menu-icon");
+  const navLinks = document.getElementById("nav-links");
+
+  menuIcon.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+    gsap.registerPlugin(TextPlugin);
+    gsap.to("#typeText", {
+      duration: 4,
+      text: {
+        value: "Affordable Modern Spaces"
+      },
+      repeat: -1,
+      repeatDelay: 2,
+      yoyo: true,
+      ease: "power1.inOut"
+    });
+  
+  gsap.from(".service-box", {
+    opacity: 0,
+    y: 40,
+    duration: 0.6,
+    stagger: 0.2,
+    scrollTrigger: {
+      trigger: ".services-gallery",
+      start: "top 80%"
+    }
+  });
+</script>
+
+</body>
+</html>

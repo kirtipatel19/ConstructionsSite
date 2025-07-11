@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Satyam Designs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+     .navbar {
+      background-color: #fff;
+      padding: 12px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      padding: 8px 14px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f9a825;
+      text-decoration: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      color: #333;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
+
+     .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: 0.8s ease-in-out;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .slide .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    max-width: 700px;
+    z-index: 2;
+  }
+
+  .hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    color: #eee;
+    margin-bottom: 25px;
+  }
+
+  .hero-content .btn {
+    padding: 12px 28px;
+    background: #f9a825;
+    color: #000;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: 0.3s ease;
+  }
+
+  .hero-content .btn:hover {
+    background: #ffdb4d;
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    padding: 0 15px;
+    user-select: none;
+  }
+
+  .nav.prev {
+    left: 0;
+  }
+
+  .nav.next {
+    right: 0;
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    background-color: #f4c613;
+  }
+  
+  .welcome-section {
+    margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 60px;
+      background: #fff url('');
+      background-repeat: repeat;
+      background-size: auto;
+      position: relative;
+    }
+
+    .left-text {
+      flex: 1;
+    }
+
+    .left-text span {
+      font-size: 1rem;
+      color: #f9a825;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-bottom: 10px;
+      border-left: 3px solid #f9a825;
+      padding-left: 12px;
+    }
+
+    .left-text h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #111;
+    }
+
+    .right-content {
+      flex: 1;
+      padding-left: 50px;
+    }
+
+    .right-content p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn-learn {
+      background-color: #f9a825;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-learn:hover {
+      background-color: #ffc107;
+      text-decoration: none;
+      color: black;
+    }
+
+    .hammer-icon {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.06;
+      width: 80px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+      }
+
+      .right-content {
+        padding-left: 0;
+        margin-top: 30px;
+      }
+
+      .hammer-icon {
+        display: none;
+      }
+    } 
+
+  .offer-section {
+    background: #f9f9f9;
+    padding: 80px 20px;
+  }
+
+  .offer-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #222;
+    font-weight: 600;
+  }
+
+  .offer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .offer-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .offer-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .offer-card i {
+    font-size: 2rem;
+    color: #f9a825;
+    margin-bottom: 15px;
+  }
+
+  .offer-card h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .offer-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .customized-section {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+
+  .customized-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .customized-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 20px;
+  }
+
+  .customized-content h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .customized-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+  }
+
+  .custom-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .custom-btns .btn {
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #f4c613;
+    color: black;
+    transition: 0.3s ease;
+  }
+
+  .custom-btns .btn:hover {
+    background: #ffe770;
+  }
+
+  .custom-btns .btn-secondary {
+    background: teal;
+    color: white;
+  }
+
+  .custom-btns .btn-secondary:hover {
+    background: #007575;
+  }
+
+  section.feedback-section {
+    background-color: #fff;
+    padding: 80px 20px;
+    color: white;
+  }
+
+  .section-title {
+    margin-left: 100px;
+    font-size: 2.5rem;
+    color: #0a0a0a;
+  }
+
+  .feedback-cards {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .card {
+    background-color: #f7f8bc;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(160, 102, 102, 0.4);
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+  }
+
+  .card::before {
+    content: '“';
+    font-size: 6rem;
+    color: #ffc107;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    opacity: 0.2;
+  }
+
+  .card p  { font-size: 1rem;
+    line-height: 1.6;
+    color: #2e2828;
+    margin-bottom: 20px;
+  }
+
+  .client {
+    font-weight: bold;
+    color: #ffc107;
+  }
+
+  @media (max-width: 600px) {
+    .section-title {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-left: 0;
+    }
+  }
+
+  .timeline-container {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  padding-left: 30px;
+  border-left: 4px solid #f9a825;
+}
+
+.timeline-box {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-box::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background-color: #f9a825;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px #f9a82544;
+}
+
+.timeline-year {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #f9a825;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 8px;
+}
+
+   .footer {
+    background-color: #0b0b1f;
+    color: #fff;
+    padding: 50px 20px;
+  }
+
+  .footer h5 {
+    color: #f9a825;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .footer a {
+    color: #ccc;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: #f9a825;
+      text-decoration: none;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 14px;
+    color: #aaa;
+  }
+
+
+  .social-sticky {
+    position: fixed;
+    top: 40%;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .social-sticky a {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .social-sticky a:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .social-sticky a[href*="wa.me"] {
+    background: #25D366;
+  }
+
+  .social-sticky a[href*="wa.me"]:hover {
+    background: #1eb149;
+  }
+
+  .social-sticky a[href*="instagram"] {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  }
+
+  .social-sticky a[href*="instagram"]:hover {
+    filter: brightness(1.1);
+  }
+
+  .social-sticky a[href*="facebook"] {
+    background: #1877F2;
+  }
+
+  .social-sticky a[href*="facebook"]:hover {
+    background: #145dc2;
+  }
+
+  .social-sticky a[href*="youtube"] {
+    background: #FF0000;
+  }
+
+  .social-sticky a[href*="youtube"]:hover {
+    background: #cc0000;
+  }
+ @media (max-width: 768px) {
+  .social-sticky {
+    top: auto;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  
+  }
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="Satyam Logo" />
+      </a>
+
+      <div class="menu-icon" id="menu-icon">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<section class="hero-slider">
+  <div class="slide active" style="background-image: url('images/home2.jpg')">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h2>Apka Ghar, Apke Sapno Ka</h2>
+      <p>Where we believe architecture transforms ideas into ideal homes.</p>
+      <a href="detail.html" class="btn">View Details</a>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('images/home1.jpg')">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h2>Banaye Apna Dream House</h2>
+      <p>Complete architecture, interiors, and construction under one roof.</p>
+      <a href="detail.html" class="btn">View Details</a>
+    </div>
+  </div>
+
+  <div class="nav prev">&#10094;</div>
+  <div class="nav next">&#10095;</div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+  <section class="welcome-section">
+    <div class="left-text">
+      <span>Welcome To</span>
+      <h1>Satyam Design & Consultancy</h1>
+    </div>
+    <div class="right-content">
+      <p>Where dreams turn into strong foundations and thoughtful designs.
+With a perfect blend of modern architecture and Vastu-compliant principles, we specialize in crafting elegant residential and commercial spaces tailored to your lifestyle.
+From concept to completion, we believe in delivering quality, trust, and innovation in every brick we lay and every plan we draw.</p>
+      <a href="about.html" class="btn-learn">Learn More →</a>
+    </div>
+  </section>
+
+<section class="offer-section">
+  <h2>What We Offer</h2>
+  <div class="offer-cards">
+    <div class="offer-card">
+      <i class="fas fa-drafting-compass"></i>
+      <h5>2D Floor Plans</h5>
+      <p>Clear and vastu-friendly layout plans tailored to your site.</p>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-vector-square"></i>
+      <h5>3D Elevations</h5>
+      <p>Beautiful 3D front elevation views for your dream home.</p>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-tools"></i>
+      <h5>Construction Drawing</h5>
+      <p>Accurate working drawings for site execution and layouts.</p>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-fill-drip"></i>
+      <h5>Interior Design</h5>
+      <p>Elegant interior planning with material suggestions.</p>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-mountain"></i>
+      <h5>Landscaping</h5>
+      <p>Transform outdoor spaces with gardens and water bodies.</p>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-sitemap"></i>
+      <h5>Project Consultancy</h5>
+      <p>End-to-end consultancy to ensure smooth execution.</p>
+    </div>
+  </div>
+</section>
+
+<section class="customized-section" style="background-image: url('images/vella.jpg');">
+  <div class="customized-overlay"></div>
+  <div class="customized-content">
+    <h2>Complete Customized</h2>
+    <p>Complete drawings that will help contractors to execute on-site</p>
+    <div class="custom-btns">
+      <a href="contact.html" class="btn">Book Appointment</a>
+      <a href="moreinfo.html" class="btn btn-secondary">More Info</a>
+    </div>
+  </div>
+</section>
+
+<section class="feedback-section" id="reviews">
+  <h2 class="section-title">Client Feedback</h2>
+  <div class="feedback-cards">
+    <div class="card">
+      <p>Great service and on-time delivery. The site was completed faster than expected without compromising quality!</p>
+      <div class="client">– Ramesh Kumar, Site Manager</div>
+    </div>
+    <div class="card">
+      <p>Very professional team. They handled everything from planning to execution flawlessly. Highly recommended!</p>
+      <div class="client">– Priya Sinha, Architect</div>
+    </div>
+    <div class="card">
+      <p>Excellent workmanship and friendly staff. Our dream project became a reality with Satyam Construction.</p>
+      <div class="client">– Aakash Mehta, Client</div>
+    </div>
+    <div class="card">
+      <p>Affordable pricing, premium finish, and great follow-up support. Completely satisfied with the work.</p>
+      <div class="client">– Sunita Sharma, Client</div>
+    </div>
+     <div class="card">
+      <p>Professional team, fast delivery, and flawless execution — highly recommend them for house planning and construction drawings.</p>
+      <div class="client">– Ritik Dhanjani, Client</div>
+    </div>
+    <div class="card">
+      <p>Satyam Design Makerz turned our vision into reality — the designs were unique, functional, and exactly what we needed.</p>
+      <div class="client">– Sanjul Verma, Engineer</div>
+    </div>
+  </div>
+</section>
+
+<section class="journey-section" style="padding: 80px 20px; background-color: #fff;">
+  <h2 style="text-align: center; font-size: 2.5rem; font-weight: 600; color: #222; margin-bottom: 60px;">
+    Our Journey
+  </h2>
+
+  <div class="timeline-container">
+    <div class="timeline-box">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-desc">Satyam Design & Consultancy was founded with a vision to provide vastu-compliant and modern designs affordably.</div>
+    </div>
+
+    <div class="timeline-box">
+      <div class="timeline-year">2023</div>
+      <div class="timeline-desc">Successfully delivered over 100+ elevation designs and residential plans across Madhya Pradesh.</div>
+    </div>
+
+    <div class="timeline-box">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-desc">Ventured into commercial projects and interior design services with a 20+ member professional team.</div>
+    </div>
+
+    <div class="timeline-box">
+      <div class="timeline-year">2025</div>
+      <div class="timeline-desc">Recognized as a trusted consultancy in Central India. Completed 130+ commercial & residential projects.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>ABOUT US</h5>
+          <p>Satyam Design & Consultancy is your space transformation partner, 
+            delivering Vastu-compliant and modern residential & commercial designs at affordable rates.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>SITE MAP</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="service.html">Services</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="col-md-4">
+          <h5>CONTACT</h5>
+          <p>📍 Hotel Paradise , Makroniya Madhya Pradesh ,India </p>
+          <p>📞 +919981892125</p>
+          <p>📧 kurmisatendra7@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">Copyright ©SatyamDesign&Consultancy.com.<br> All Rights Reserved.</div>
+    </div>
+  </footer>
+
+<div class="social-sticky">
+  <a href="https://wa.me/message/2EFLNCWMJGSGK1" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/satyam_designs_and_consultancy?igsh=YzF4ZTByd24wMmVu" target="_blank" title="Follow on Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.facebook.com/share/1C5YX8yJ41/" target="_blank" title="Like us on Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.youtube.com/@SatyamDesigns" target="_blank" title="Watch on YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+
+<script>
+  const menuIcon = document.getElementById("menu-icon");
+  const navLinks = document.getElementById("nav-links");
+
+  menuIcon.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.timeline-box').forEach((box, i) => {
+    gsap.from(box, {
+      scrollTrigger: {
+        trigger: box,
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 0,
+      x: i % 2 === 0 ? -50 : 50,
+      duration: 1,
+      ease: "power3.out"
+    });
+  });
+
+  gsap.from(".section-title", {
+    opacity: 0,
+    y: -50,
+    duration: 1
+  });
+
+  gsap.from(".card", {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    stagger: 0.2,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+</script>
+
+<script>
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
+
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach((slide, idx) => {
+      slide.classList.remove("active");
+      dots[idx].classList.remove("active");
+    });
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  next.addEventListener("click", nextSlide);
+  prev.addEventListener("click", prevSlide);
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      index = i;
+      showSlide(index);
+    });
+  });
+
+  setInterval(nextSlide, 3000);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
